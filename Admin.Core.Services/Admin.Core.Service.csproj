@@ -5,12 +5,13 @@
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-      <DocumentationFile>..\Admin.Core\Admin.Core.Model.xml</DocumentationFile>
+      <DocumentationFile>..\Admin.Core\Admin.Core.Service.xml</DocumentationFile>
       <NoWarn>1701;1702;1591</NoWarn>
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Admin.Core.Common\Admin.Core.Common.csproj" />
+      <ProjectReference Include="..\Admin.Core.Model\Admin.Core.Model.csproj" />
+      <ProjectReference Include="..\Admin.Core.Repository\Admin.Core.Repository.csproj" />
     </ItemGroup>
 
 </Project>

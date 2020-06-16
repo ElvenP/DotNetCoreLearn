@@ -1,0 +1,310 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Admin.Core.Common</name>
+    </assembly>
+    <members>
+        <member name="T:Admin.Core.Common.Attributes.SingleInstanceAttribute">
+            <summary>
+            单例注入
+            </summary>
+        </member>
+        <member name="T:Admin.Core.Common.Attributes.TransactionAttribute">
+            <summary>
+            启用事物
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Common.Attributes.TransactionAttribute.Propagation">
+            <summary>
+            事务传播方式
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Common.Attributes.TransactionAttribute.IsolationLevel">
+            <summary>
+            事务隔离级别
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Common.BaseModel.Entity`1.Id">
+            <summary>
+            编号
+            </summary>
+        </member>
+        <member name="T:Admin.Core.Common.BaseModel.EntityAdd`1">
+            <summary>
+                实体创建审计
+            </summary>
+            <typeparam name="TKye"></typeparam>
+        </member>
+        <member name="P:Admin.Core.Common.BaseModel.EntityAdd`1.CreatedUserId">
+            <summary>
+                创建者Id
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Common.BaseModel.EntityAdd`1.CreatedUserName">
+            <summary>
+                创建者
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Common.BaseModel.EntityAdd`1.CreatedTime">
+            <summary>
+                建仓时间
+            </summary>
+        </member>
+        <member name="T:Admin.Core.Common.BaseModel.EntityBase`1">
+            <summary>
+            实体审计
+            </summary>
+            <typeparam name="TKey"></typeparam>
+        </member>
+        <member name="P:Admin.Core.Common.BaseModel.EntityBase`1.Version">
+            <summary>
+            版本
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Common.BaseModel.EntityBase`1.IsDeleted">
+            <summary>
+            是否删除
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Common.BaseModel.EntityBase`1.CreatedUserId">
+            <summary>
+            创建者Id
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Common.BaseModel.EntityBase`1.CreatedUserName">
+            <summary>
+            创建者
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Common.BaseModel.EntityBase`1.CreatedTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Common.BaseModel.EntityBase`1.ModifiedUserId">
+            <summary>
+            修改者Id
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Common.BaseModel.EntityBase`1.ModifiedUserName">
+            <summary>
+            修改者
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Common.BaseModel.EntityBase`1.ModifiedTime">
+            <summary>
+            修改时间
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Common.BaseModel.EntitySoftDelete`1.IsDeleted">
+            <summary>
+            是否删除
+            </summary>
+        </member>
+        <member name="T:Admin.Core.Common.BaseModel.EntityUpdate`1">
+            <summary>
+                实体修改审计
+            </summary>
+            <typeparam name="TKey"></typeparam>
+        </member>
+        <member name="P:Admin.Core.Common.BaseModel.EntityUpdate`1.ModifiedUserId">
+            <summary>
+                修改者Id
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Common.BaseModel.EntityUpdate`1.ModifiedUserName">
+            <summary>
+                修改者
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Common.BaseModel.EntityUpdate`1.ModifiedTime">
+            <summary>
+                修改时间
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Common.BaseModel.EntityVersion`1.Version">
+            <summary>
+            版本
+            </summary>
+        </member>
+        <member name="T:Admin.Core.Common.BaseModel.IEntitySoftDelete">
+            <summary>
+            是否删除
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Common.BaseModel.IEntitySoftDelete.IsDeleted">
+            <summary>
+            是否删除
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Common.BaseModel.IEntityVersion.Version">
+            <summary>
+            版本
+            </summary>
+        </member>
+        <member name="T:Admin.Core.Common.Configs.AppConfig">
+            <summary>
+            应用配置
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Common.Configs.AppConfig.Swagger">
+            <summary>
+            Swagger文档
+            </summary>
+        </member>
+        <member name="M:Admin.Core.Common.Extensions.StringExtensions.NotNull(System.String)">
+            <summary>
+            判断字符串是否不为Null、空
+            </summary>
+            <param name="s"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Admin.Core.Common.Helpers.ConfigHelper">
+            <summary>
+            配置帮助类
+            </summary>
+        </member>
+        <member name="M:Admin.Core.Common.Helpers.ConfigHelper.Load(System.String,System.String,System.Boolean)">
+            <summary>
+            加载配置文件
+            </summary>
+            <param name="fileName">文件名称</param>
+            <param name="environmentName">环境名称</param>
+            <param name="reloadOnChange">自动更新</param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.Core.Common.Helpers.ConfigHelper.Get``1(System.String,System.String,System.Boolean)">
+            <summary>
+            获得配置信息
+            </summary>
+            <typeparam name="T">配置信息</typeparam>
+            <param name="fileName">文件名称</param>
+            <param name="environmentName">环境名称</param>
+            <param name="reloadOnChange">自动更新</param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.Core.Common.Helpers.ConfigHelper.Bind(System.String,System.Object,System.String,System.Boolean)">
+            <summary>
+            绑定实例配置信息
+            </summary>
+            <param name="fileName">文件名称</param>
+            <param name="instance">实例配置</param>
+            <param name="environmentName">环境名称</param>
+            <param name="reloadOnChange">自动更新</param>
+        </member>
+        <member name="T:Admin.Core.Common.Output.IResponseOutput">
+            <summary>
+            响应数据输出接口
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Common.Output.IResponseOutput.Success">
+            <summary>
+                是否成功
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Common.Output.IResponseOutput.Msg">
+            <summary>
+                消息
+            </summary>
+        </member>
+        <member name="T:Admin.Core.Common.Output.IResponseOutput`1">
+            <summary>
+                响应数据输出泛型接口
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:Admin.Core.Common.Output.IResponseOutput`1.Data">
+            <summary>
+                返回数据
+            </summary>
+        </member>
+        <member name="T:Admin.Core.Common.Output.ResponseOutput`1">
+            <summary>
+            响应数据输出
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Common.Output.ResponseOutput`1.Success">
+            <summary>
+            是否成功标记
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Common.Output.ResponseOutput`1.Code">
+            <summary>
+            状态码
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Common.Output.ResponseOutput`1.Msg">
+            <summary>
+            消息
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Common.Output.ResponseOutput`1.Data">
+            <summary>
+            数据
+            </summary>
+        </member>
+        <member name="M:Admin.Core.Common.Output.ResponseOutput`1.Ok(`0,System.String)">
+            <summary>
+            成功
+            </summary>
+            <param name="data">数据</param>
+            <param name="msg">消息</param>
+        </member>
+        <member name="M:Admin.Core.Common.Output.ResponseOutput`1.NotOk(System.String,`0)">
+            <summary>
+            失败
+            </summary>
+            <param name="msg">消息</param>
+            <param name="data">数据</param>
+            <returns></returns>
+        </member>
+        <member name="T:Admin.Core.Common.Output.ResponseOutput">
+            <summary>
+            响应数据静态输出
+            </summary>
+        </member>
+        <member name="M:Admin.Core.Common.Output.ResponseOutput.Ok``1(``0,System.String)">
+            <summary>
+            成功
+            </summary>
+            <param name="data">数据</param>
+            <param name="msg">消息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.Core.Common.Output.ResponseOutput.Ok">
+            <summary>
+            成功
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.Core.Common.Output.ResponseOutput.NotOk``1(System.String,``0)">
+            <summary>
+            失败
+            </summary>
+            <param name="msg">消息</param>
+            <param name="data">数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.Core.Common.Output.ResponseOutput.NotOk(System.String)">
+            <summary>
+            失败
+            </summary>
+            <param name="msg">消息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.Core.Common.Output.ResponseOutput.Result``1(System.Boolean)">
+            <summary>
+            根据布尔值返回结果
+            </summary>
+            <param name="success"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.Core.Common.Output.ResponseOutput.Result(System.Boolean)">
+            <summary>
+            根据布尔值返回结果
+            </summary>
+            <param name="success"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

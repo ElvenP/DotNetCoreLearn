@@ -20,7 +20,7 @@ namespace Admin.Core.Model.Admin
         /// <summary>
         /// 说明
         /// </summary>
-        [Column(StringLength = 100)]
+        [Column(StringLength = 200)]
         public string Description { get; set; }
 
         /// <summary>

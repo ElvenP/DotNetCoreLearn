@@ -3,20 +3,21 @@ using FreeSql.DataAnnotations;
 
 namespace Admin.Core.Model.Admin
 {
-
     [Table(Name = "ab_user_role")]
-    public class UserRoleEntity:EntityAdd
+    [Index("uk_user_role_userid_roleid", nameof(UserId) + "," + nameof(RoleId), true)]
+    public class UserRoleEntity : EntityAdd
 
     {
         /// <summary>
-        /// 用户Id
+        ///     用户Id
         /// </summary>
+        public long UserId { get; set; }
 
 
         public UserEntity User { get; set; }
 
         /// <summary>
-        /// 角色Id
+        ///     角色Id
         /// </summary>
 
         public long RoleId { get; set; }

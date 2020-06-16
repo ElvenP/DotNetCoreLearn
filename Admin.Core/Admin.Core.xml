@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Admin.Core</name>
+    </assembly>
+    <members>
+        <member name="T:Admin.Core.Enums.ApiVersion">
+            <summary>
+            接口版本
+            </summary>
+        </member>
+        <member name="F:Admin.Core.Enums.ApiVersion.V1">
+            <summary>
+            V1 版本
+            </summary>
+        </member>
+        <member name="F:Admin.Core.Enums.ApiVersion.V2">
+            <summary>
+            V2 版本
+            </summary>
+        </member>
+    </members>
+</doc>

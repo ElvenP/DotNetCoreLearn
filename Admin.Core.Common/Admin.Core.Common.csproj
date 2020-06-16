@@ -4,9 +4,17 @@
         <TargetFramework>netcoreapp3.1</TargetFramework>
     </PropertyGroup>
 
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+      <DocumentationFile>..\Admin.Core\Admin.Core.Common.xml</DocumentationFile>
+      <NoWarn>1701;1702;1591</NoWarn>
+    </PropertyGroup>
+
     <ItemGroup>
+      <PackageReference Include="Autofac.Extras.DynamicProxy" Version="5.0.0" />
       <PackageReference Include="FreeSql" Version="1.6.0-preview0611" />
       <PackageReference Include="FreeSql.Repository" Version="1.6.0-preview0611" />
+      <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.4" />
+      <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="3.1.5" />
     </ItemGroup>
 
 </Project>
