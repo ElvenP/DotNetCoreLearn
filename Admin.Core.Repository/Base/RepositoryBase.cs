@@ -7,8 +7,6 @@ namespace Admin.Core.Repository.Base
 {
     public class RepositoryBase<TEntity,TKey>:BaseRepository<TEntity,TKey> where TEntity:class,new()
     {
-
-
         public RepositoryBase(UnitOfWorkManager uowm) : base(uowm.Orm, null, null
         )
         {

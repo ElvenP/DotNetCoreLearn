@@ -10,6 +10,10 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
       <ProjectReference Include="..\Admin.Core.Model\Admin.Core.Model.csproj" />
       <ProjectReference Include="..\Admin.Core.Repository\Admin.Core.Repository.csproj" />
     </ItemGroup>

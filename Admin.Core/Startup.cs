@@ -1,7 +1,12 @@
+using Admin.Core.Common.Aop;
+using Admin.Core.Common.Attributes;
 using Admin.Core.Common.Configs;
 using Admin.Core.Common.Helpers;
 using Admin.Core.Db;
 using Admin.Core.Enums;
+using Autofac;
+using Autofac.Extras.DynamicProxy;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -14,13 +19,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using Admin.Core.Common.Aop;
-using Admin.Core.Common.Attributes;
-using Admin.Core.Common.Auth;
-using Autofac;
-using Autofac.Extras.DynamicProxy;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.DependencyInjection.Extensions;
+using FreeSql;
 
 namespace Admin.Core
 {
@@ -44,13 +43,13 @@ namespace Admin.Core
 
         public void ConfigureServices(IServiceCollection services)
         {
-         
-            
             //数据库
             services.AddDb(_env, _appConfig);
 
-
+            var serviceAssembly = Assembly.Load("Admin.Core.Service");
+            services.AddAutoMapper(serviceAssembly);
             services.AddControllers();
+           
 
             #region Swagger Api文档
 
@@ -181,11 +180,6 @@ namespace Admin.Core
 
             app.UseRouting();
 
-            app.UseAuthorization();
-
-            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
-
-
             #region Swagger Api文档
 
             if (!_env.IsDevelopment() && !_appConfig.Swagger) return;
@@ -202,6 +196,10 @@ namespace Admin.Core
             });
 
             #endregion
+
+            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+
+          
         }
     }
 }

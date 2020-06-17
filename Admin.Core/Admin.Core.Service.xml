@@ -4,5 +4,175 @@
         <name>Admin.Core.Service</name>
     </assembly>
     <members>
+        <member name="T:Admin.Core.Service.Admin.User.Input.UserAddInput">
+            <summary>
+            添加
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Service.Admin.User.Input.UserAddInput.UserName">
+            <summary>
+            账号
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Service.Admin.User.Input.UserAddInput.Password">
+            <summary>
+            密码
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Service.Admin.User.Input.UserAddInput.NickName">
+            <summary>
+            昵称
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Service.Admin.User.Input.UserAddInput.Status">
+            <summary>
+            状态
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Service.Admin.User.Input.UserAddInput.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Service.Admin.User.Input.UserAddInput.RoleIds">
+            <summary>
+            角色
+            </summary>
+        </member>
+        <member name="T:Admin.Core.Service.Admin.User.Input.UserChangePasswordInput">
+            <summary>
+            修改密码
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Service.Admin.User.Input.UserChangePasswordInput.OldPassword">
+            <summary>
+            旧密码
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Service.Admin.User.Input.UserChangePasswordInput.NewPassword">
+            <summary>
+            新密码
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Service.Admin.User.Input.UserChangePasswordInput.ConfirmPassword">
+            <summary>
+            确认新密码
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Service.Admin.User.Input.UserChangePasswordInput.Password">
+            <summary>
+            密码
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Service.Admin.User.Input.UserChangePasswordInput.Version">
+            <summary>
+            版本
+            </summary>
+        </member>
+        <member name="T:Admin.Core.Service.Admin.User.Input.UserUpdateBasicInput">
+            <summary>
+            更新基本信息
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Service.Admin.User.Input.UserUpdateBasicInput.Avatar">
+            <summary>
+            头像
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Service.Admin.User.Input.UserUpdateBasicInput.NickName">
+            <summary>
+            昵称
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Service.Admin.User.Input.UserUpdateBasicInput.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Service.Admin.User.Input.UserUpdateBasicInput.Version">
+            <summary>
+            版本
+            </summary>
+        </member>
+        <member name="T:Admin.Core.Service.Admin.User.Input.UserUpdateInput">
+            <summary>
+            修改
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Service.Admin.User.Input.UserUpdateInput.Id">
+            <summary>
+            主键Id
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Service.Admin.User.Input.UserUpdateInput.UserName">
+            <summary>
+            账号
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Service.Admin.User.Input.UserUpdateInput.NickName">
+            <summary>
+            昵称
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Service.Admin.User.Input.UserUpdateInput.Status">
+            <summary>
+            状态
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Service.Admin.User.Input.UserUpdateInput.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Service.Admin.User.Input.UserUpdateInput.RoleIds">
+            <summary>
+            角色
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Service.Admin.User.Input.UserUpdateInput.Version">
+            <summary>
+            版本
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Service.Admin.User.Output.UserListOutput.Id">
+            <summary>
+            主键Id
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Service.Admin.User.Output.UserListOutput.UserName">
+            <summary>
+            账号
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Service.Admin.User.Output.UserListOutput.Name">
+            <summary>
+            姓名
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Service.Admin.User.Output.UserListOutput.NickName">
+            <summary>
+            昵称
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Service.Admin.User.Output.UserListOutput.Status">
+            <summary>
+            状态
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Service.Admin.User.Output.UserListOutput.RoleNames">
+            <summary>
+            角色
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Service.Admin.User.Output.UserListOutput.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Service.Admin.User.Output.UserListOutput.CreatedTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
     </members>
 </doc>
