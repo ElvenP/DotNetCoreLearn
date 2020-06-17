@@ -24,6 +24,66 @@
             事务隔离级别
             </summary>
         </member>
+        <member name="P:Admin.Core.Common.Auth.IUser.Id">
+            <summary>
+            主键
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Common.Auth.IUser.Name">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Common.Auth.IUser.NickName">
+            <summary>
+            昵称
+            </summary>
+        </member>
+        <member name="T:Admin.Core.Common.Auth.User">
+            <summary>
+            用户信息
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Common.Auth.User.Id">
+            <summary>
+            用户Id
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Common.Auth.User.Name">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Common.Auth.User.NickName">
+            <summary>
+            昵称
+            </summary>
+        </member>
+        <member name="T:Admin.Core.Common.Auth.ClaimAttributes">
+            <summary>
+            Claim属性
+            </summary>
+        </member>
+        <member name="F:Admin.Core.Common.Auth.ClaimAttributes.UserId">
+            <summary>
+            用户Id
+            </summary>
+        </member>
+        <member name="F:Admin.Core.Common.Auth.ClaimAttributes.UserName">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="F:Admin.Core.Common.Auth.ClaimAttributes.UserNickName">
+            <summary>
+            姓名
+            </summary>
+        </member>
+        <member name="F:Admin.Core.Common.Auth.ClaimAttributes.RefreshExpires">
+            <summary>
+            刷新有效期
+            </summary>
+        </member>
         <member name="P:Admin.Core.Common.BaseModel.Entity`1.Id">
             <summary>
             编号
@@ -147,14 +207,96 @@
             应用配置
             </summary>
         </member>
+        <member name="P:Admin.Core.Common.Configs.AppConfig.Urls">
+            <summary>
+            Api地址，默认 http://*:8888
+            </summary>
+        </member>
         <member name="P:Admin.Core.Common.Configs.AppConfig.Swagger">
             <summary>
             Swagger文档
             </summary>
         </member>
+        <member name="P:Admin.Core.Common.Configs.AppConfig.Aop">
+            <summary>
+            Aop配置
+            </summary>
+        </member>
+        <member name="T:Admin.Core.Common.Configs.AopConfig">
+            <summary>
+            Aop配置
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Common.Configs.AopConfig.Transaction">
+            <summary>
+            事物
+            </summary>
+        </member>
+        <member name="T:Admin.Core.Common.Configs.DbConfig">
+            <summary>
+            数据库配置
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Common.Configs.DbConfig.Type">
+            <summary>
+            数据库类型
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Common.Configs.DbConfig.ConnectionString">
+            <summary>
+            数据库字符串
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Common.Configs.DbConfig.GenerateData">
+            <summary>
+            生成数据
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Common.Configs.DbConfig.SyncStructure">
+            <summary>
+            同步结构
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Common.Configs.DbConfig.SyncData">
+            <summary>
+            同步数据
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Common.Configs.DbConfig.CreateDb">
+            <summary>
+            建库
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Common.Configs.DbConfig.CreateDbConnectionString">
+            <summary>
+            建库连接字符串
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Common.Configs.DbConfig.CreateDbSql">
+            <summary>
+            建库脚本
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Common.Configs.DbConfig.MonitorCommand">
+            <summary>
+            监听所有操作
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Common.Configs.DbConfig.Curd">
+            <summary>
+            监听Curd操作
+            </summary>
+        </member>
         <member name="M:Admin.Core.Common.Extensions.StringExtensions.NotNull(System.String)">
             <summary>
             判断字符串是否不为Null、空
+            </summary>
+            <param name="s"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.Core.Common.Extensions.StringExtensions.IsNull(System.String)">
+            <summary>
+            判断字符串是否为Null、空
             </summary>
             <param name="s"></param>
             <returns></returns>
@@ -191,6 +333,41 @@
             <param name="instance">实例配置</param>
             <param name="environmentName">环境名称</param>
             <param name="reloadOnChange">自动更新</param>
+        </member>
+        <member name="M:Admin.Core.Common.Helpers.FileHelper.WriteFile(System.String,System.String)">
+            <summary>
+            写文件
+            </summary>
+            <param name="Path">文件路径</param>
+            <param name="Strings">文件内容</param>
+        </member>
+        <member name="M:Admin.Core.Common.Helpers.FileHelper.WriteFile(System.String,System.String,System.Text.Encoding)">
+            <summary>
+            写文件
+            </summary>
+            <param name="Path">文件路径</param>
+            <param name="Strings">文件内容</param>
+            <param name="encode">编码格式</param>
+        </member>
+        <member name="M:Admin.Core.Common.Helpers.FileHelper.ReadFile(System.String)">
+            <summary>
+            读文件
+            </summary>
+            <param name="Path">文件路径</param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.Core.Common.Helpers.FileHelper.ReadFile(System.String,System.Text.Encoding)">
+            <summary>
+            读文件
+            </summary>
+            <param name="Path">文件路径</param>
+            <param name="encode">编码格式</param>
+            <returns></returns>
+        </member>
+        <member name="T:Admin.Core.Common.Helpers.UtilConvert">
+            <summary>
+            数据类型转换
+            </summary>
         </member>
         <member name="T:Admin.Core.Common.Output.IResponseOutput">
             <summary>

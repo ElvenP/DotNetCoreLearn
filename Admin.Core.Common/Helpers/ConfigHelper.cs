@@ -57,10 +57,7 @@ namespace Admin.Core.Common.Helpers
         public T Get<T>(string fileName, string environmentName = "", bool reloadOnChange = false)
         {
             var configuration = Load(fileName, environmentName, reloadOnChange);
-            if (configuration == null)
-                return default;
-
-            return configuration.Get<T>();
+            return configuration == null ? default : configuration.Get<T>();
         }
 
         /// <summary>

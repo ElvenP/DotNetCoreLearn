@@ -1,4 +1,5 @@
-﻿using FreeSql.DataAnnotations;
+﻿using Admin.Core.Common.BaseModel;
+using FreeSql.DataAnnotations;
 
 namespace Admin.Core.Model.Admin
 {
@@ -7,7 +8,7 @@ namespace Admin.Core.Model.Admin
     /// </summary>
     [Table(Name = "ad_view")]
     [Index("uk_view_parentid_label", nameof(ParentId) + "," + nameof(Label), true)]
-    public class ViewEntity
+    public class ViewEntity:EntityBase
     {
         /// <summary>
         ///     所属节点
