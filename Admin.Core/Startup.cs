@@ -44,7 +44,7 @@ namespace Admin.Core
         public void ConfigureServices(IServiceCollection services)
         {
             //数据库
-            services.AddDb(_env, _appConfig);
+           // services.AddDb(_env, _appConfig);
 
             var serviceAssembly = Assembly.Load("Admin.Core.Service");
             services.AddAutoMapper(serviceAssembly);
@@ -118,6 +118,16 @@ namespace Admin.Core
 
             try
             {
+                var dbConfig = new ConfigHelper().Get<DbConfig>("dbconfig", _env.EnvironmentName);
+                var freeSqlBuilder = new FreeSqlBuilder()
+                    .UseConnectionString(dbConfig.Type, dbConfig.ConnectionString)
+                    .UseAutoSyncStructure(dbConfig.SyncStructure)
+                    .UseLazyLoading(false)
+                    .UseNoneCommandParameter(true);
+                var fsql = freeSqlBuilder.Build();
+
+                builder.RegisterInstance(fsql).SingleInstance();
+                builder.RegisterType(typeof(UnitOfWorkManager)).InstancePerLifetimeScope();
                 #region SingleInstance
 
                 //无接口注入单例

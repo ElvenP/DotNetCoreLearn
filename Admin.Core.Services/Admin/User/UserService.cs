@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
+using Admin.Core.Common.Attributes;
 using Admin.Core.Common.Output;
 using Admin.Core.Model.Admin;
 using Admin.Core.Repository.Admin;
@@ -19,7 +20,7 @@ namespace Admin.Core.Service.Admin.User
             _userRepository = userRepository;
            
         }
-
+        [Transaction]
         public async Task<ResponseOutput<UserGetOutput>> GetAsync(long id)
         {
             var res =new ResponseOutput<UserGetOutput>();

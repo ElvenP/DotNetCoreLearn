@@ -209,7 +209,7 @@
         </member>
         <member name="P:Admin.Core.Common.Configs.AppConfig.Urls">
             <summary>
-            Api地址，默认 http://*:8888
+            Api地址，默认 http://*:5000
             </summary>
         </member>
         <member name="P:Admin.Core.Common.Configs.AppConfig.Swagger">
