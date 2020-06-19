@@ -408,6 +408,36 @@
             监听Curd操作
             </summary>
         </member>
+        <member name="T:Admin.Core.Common.Configs.JwtConfig">
+            <summary>
+            Jwt配置
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Common.Configs.JwtConfig.Issuer">
+            <summary>
+            发行者
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Common.Configs.JwtConfig.Audience">
+            <summary>
+            订阅者
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Common.Configs.JwtConfig.SecurityKey">
+            <summary>
+            密钥
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Common.Configs.JwtConfig.Expires">
+            <summary>
+            有效期(分钟)
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Common.Configs.JwtConfig.RefreshExpires">
+            <summary>
+            刷新有效期(分钟)
+            </summary>
+        </member>
         <member name="M:Admin.Core.Common.Extensions.StringExtensions.NotNull(System.String)">
             <summary>
             判断字符串是否不为Null、空
@@ -636,36 +666,6 @@
             </summary>
             <param name="success"></param>
             <returns></returns>
-        </member>
-        <member name="T:Admin.Core.Configs.JwtConfig">
-            <summary>
-            Jwt配置
-            </summary>
-        </member>
-        <member name="P:Admin.Core.Configs.JwtConfig.Issuer">
-            <summary>
-            发行者
-            </summary>
-        </member>
-        <member name="P:Admin.Core.Configs.JwtConfig.Audience">
-            <summary>
-            订阅者
-            </summary>
-        </member>
-        <member name="P:Admin.Core.Configs.JwtConfig.SecurityKey">
-            <summary>
-            密钥
-            </summary>
-        </member>
-        <member name="P:Admin.Core.Configs.JwtConfig.Expires">
-            <summary>
-            有效期(分钟)
-            </summary>
-        </member>
-        <member name="P:Admin.Core.Configs.JwtConfig.RefreshExpires">
-            <summary>
-            刷新有效期(分钟)
-            </summary>
         </member>
     </members>
 </doc>

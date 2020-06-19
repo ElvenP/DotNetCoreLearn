@@ -45,36 +45,6 @@
             响应认证处理器
             </summary>
         </member>
-        <member name="T:Admin.Core.Configs.JwtConfig">
-            <summary>
-            Jwt配置
-            </summary>
-        </member>
-        <member name="P:Admin.Core.Configs.JwtConfig.Issuer">
-            <summary>
-            发行者
-            </summary>
-        </member>
-        <member name="P:Admin.Core.Configs.JwtConfig.Audience">
-            <summary>
-            订阅者
-            </summary>
-        </member>
-        <member name="P:Admin.Core.Configs.JwtConfig.SecurityKey">
-            <summary>
-            密钥
-            </summary>
-        </member>
-        <member name="P:Admin.Core.Configs.JwtConfig.Expires">
-            <summary>
-            有效期(分钟)
-            </summary>
-        </member>
-        <member name="P:Admin.Core.Configs.JwtConfig.RefreshExpires">
-            <summary>
-            刷新有效期(分钟)
-            </summary>
-        </member>
         <member name="M:Admin.Core.Controllers.Admin.UserController.Get(System.Int64)">
             <summary>
             查询单条用户

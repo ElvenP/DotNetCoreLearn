@@ -1,19 +1,3 @@
-using Admin.Core.Common.Aop;
-using Admin.Core.Common.Attributes;
-using Admin.Core.Common.Configs;
-using Admin.Core.Common.Helpers;
-using Admin.Core.Db;
-using Admin.Core.Enums;
-using Autofac;
-using Autofac.Extras.DynamicProxy;
-using AutoMapper;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi.Models;
-using Swashbuckle.AspNetCore.SwaggerUI;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -21,42 +5,57 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using Admin.Core.Auth;
-using Admin.Core.Configs;
+using Admin.Core.Common.Aop;
+using Admin.Core.Common.Attributes;
+using Admin.Core.Common.Configs;
+using Admin.Core.Common.Helpers;
+using Admin.Core.Enums;
+using Autofac;
+using Autofac.Extras.DynamicProxy;
+using AutoMapper;
 using FreeSql;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.SwaggerUI;
 
 namespace Admin.Core
 {
     public class Startup
     {
         private readonly AppConfig _appConfig;
+
         private readonly ConfigHelper _configHelper;
-        private readonly IConfiguration _configuration;
+
+        //private readonly IConfiguration _configuration;
         private readonly IHostEnvironment _env;
 
 
-        public Startup(IConfiguration configuration, IWebHostEnvironment env)
+        public Startup(IWebHostEnvironment env)
         {
-            _configuration = configuration;
+            //_configuration = configuration;
             _env = env;
             _configHelper = new ConfigHelper();
             _appConfig = _configHelper.Get<AppConfig>("appconfig", env.EnvironmentName) ?? new AppConfig();
         }
 
         private static string BasePath => AppContext.BaseDirectory;
-        
+
         public void ConfigureServices(IServiceCollection services)
         {
             //数据库
-           // services.AddDb(_env, _appConfig);
+            // services.AddDb(_env, _appConfig);
 
             var serviceAssembly = Assembly.Load("Admin.Core.Service");
             services.AddAutoMapper(serviceAssembly);
             services.AddControllers();
-           
+
 
             #region Swagger Api文档
 
@@ -119,13 +118,14 @@ namespace Admin.Core
 
 
             #region Jwt身份认证
+
             var jwtConfig = _configHelper.Get<JwtConfig>("jwtconfig", _env.EnvironmentName);
             services.TryAddSingleton(jwtConfig);
             services.AddAuthentication(options =>
                 {
                     options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
                     options.DefaultChallengeScheme = nameof(ResponseAuthenticationHandler); //401
-                    options.DefaultForbidScheme = nameof(ResponseAuthenticationHandler);    //403
+                    options.DefaultForbidScheme = nameof(ResponseAuthenticationHandler); //403
                 })
                 .AddJwtBearer(options =>
                 {
@@ -141,7 +141,9 @@ namespace Admin.Core
                         ClockSkew = TimeSpan.Zero
                     };
                 })
-                .AddScheme<AuthenticationSchemeOptions, ResponseAuthenticationHandler>(nameof(ResponseAuthenticationHandler), o => { }); ;
+                .AddScheme<AuthenticationSchemeOptions, ResponseAuthenticationHandler>(
+                    nameof(ResponseAuthenticationHandler), o => { });
+
             #endregion
         }
 
@@ -162,6 +164,7 @@ namespace Admin.Core
 
                 builder.RegisterInstance(fsql).SingleInstance();
                 builder.RegisterType(typeof(UnitOfWorkManager)).InstancePerLifetimeScope();
+
                 #region SingleInstance
 
                 //无接口注入单例
@@ -249,8 +252,6 @@ namespace Admin.Core
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
-
-          
         }
     }
 }
