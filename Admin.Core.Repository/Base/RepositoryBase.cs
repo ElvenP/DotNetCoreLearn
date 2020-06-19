@@ -5,18 +5,20 @@ using FreeSql;
 
 namespace Admin.Core.Repository.Base
 {
-    public class RepositoryBase<TEntity,TKey>:BaseRepository<TEntity,TKey> where TEntity:class,new()
+    public class RepositoryBase<TEntity, TKey> : BaseRepository<TEntity, TKey> where TEntity : class, new()
     {
-        public RepositoryBase(UnitOfWorkManager uowm) : base(uowm.Orm, null, null
+        private readonly IUser _user;
+        public RepositoryBase(UnitOfWorkManager uowm, IUser user) : base(uowm.Orm, null, null
         )
         {
+            _user = user;
             uowm.Binding(this);
         }
     }
 
-    public class RepositoryBase<TEntity> : RepositoryBase<TEntity,long> where TEntity : class, new()
+    public class RepositoryBase<TEntity> : RepositoryBase<TEntity, long> where TEntity : class, new()
     {
-        public RepositoryBase(UnitOfWorkManager uowm) : base(uowm)
+        public RepositoryBase(UnitOfWorkManager uowm, IUser user) : base(uowm, user)
         {
         }
     }

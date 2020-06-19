@@ -4,6 +4,77 @@
         <name>Admin.Core</name>
     </assembly>
     <members>
+        <member name="T:Admin.Core.Attributes.LoginAttribute">
+            <summary>
+            启用登录
+            </summary>
+        </member>
+        <member name="T:Admin.Core.Attributes.PermissionAttribute">
+            <summary>
+            启用权限
+            </summary>
+        </member>
+        <member name="T:Admin.Core.Auth.IPermissionHandler">
+            <summary>
+            权限处理接口
+            </summary>
+        </member>
+        <member name="M:Admin.Core.Auth.IPermissionHandler.ValidateAsync(System.String,System.String)">
+            <summary>
+            权限验证
+            </summary>
+            <param name="api"></param>
+            <param name="httpMethod"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Admin.Core.Auth.PermissionHandler">
+            <summary>
+            权限处理
+            </summary>
+        </member>
+        <member name="M:Admin.Core.Auth.PermissionHandler.ValidateAsync(System.String,System.String)">
+            <summary>
+            权限验证
+            </summary>
+            <param name="api">接口路径</param>
+            <param name="httpMethod">http请求方法</param>
+            <returns></returns>
+        </member>
+        <member name="T:Admin.Core.Auth.ResponseAuthenticationHandler">
+            <summary>
+            响应认证处理器
+            </summary>
+        </member>
+        <member name="T:Admin.Core.Configs.JwtConfig">
+            <summary>
+            Jwt配置
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Configs.JwtConfig.Issuer">
+            <summary>
+            发行者
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Configs.JwtConfig.Audience">
+            <summary>
+            订阅者
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Configs.JwtConfig.SecurityKey">
+            <summary>
+            密钥
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Configs.JwtConfig.Expires">
+            <summary>
+            有效期(分钟)
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Configs.JwtConfig.RefreshExpires">
+            <summary>
+            刷新有效期(分钟)
+            </summary>
+        </member>
         <member name="M:Admin.Core.Controllers.Admin.UserController.Get(System.Int64)">
             <summary>
             查询单条用户
@@ -68,6 +139,41 @@
         <member name="F:Admin.Core.Enums.ApiVersion.V2">
             <summary>
             V2 版本
+            </summary>
+        </member>
+        <member name="T:Admin.Core.Enums.StatusCodes">
+            <summary>
+            状态码枚举
+            </summary>
+        </member>
+        <member name="F:Admin.Core.Enums.StatusCodes.Status0NotOk">
+            <summary>
+            操作失败
+            </summary>
+        </member>
+        <member name="F:Admin.Core.Enums.StatusCodes.Status1Ok">
+            <summary>
+            操作成功
+            </summary>
+        </member>
+        <member name="F:Admin.Core.Enums.StatusCodes.Status401Unauthorized">
+            <summary>
+            未登录（需要重新登录）
+            </summary>
+        </member>
+        <member name="F:Admin.Core.Enums.StatusCodes.Status403Forbidden">
+            <summary>
+            权限不足
+            </summary>
+        </member>
+        <member name="F:Admin.Core.Enums.StatusCodes.Status404NotFound">
+            <summary>
+            资源不存在
+            </summary>
+        </member>
+        <member name="F:Admin.Core.Enums.StatusCodes.Status500InternalServerError">
+            <summary>
+            系统内部错误（非业务代码里显式抛出的异常，例如由于数据不正确导致空指针异常、数据库异常等等）
             </summary>
         </member>
     </members>

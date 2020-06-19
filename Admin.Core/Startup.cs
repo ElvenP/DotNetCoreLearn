@@ -19,7 +19,14 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text;
+using Admin.Core.Auth;
+using Admin.Core.Configs;
 using FreeSql;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Admin.Core
 {
@@ -40,7 +47,7 @@ namespace Admin.Core
         }
 
         private static string BasePath => AppContext.BaseDirectory;
-
+        
         public void ConfigureServices(IServiceCollection services)
         {
             //数据库
@@ -108,6 +115,33 @@ namespace Admin.Core
                     });
                 });
 
+            #endregion
+
+
+            #region Jwt身份认证
+            var jwtConfig = _configHelper.Get<JwtConfig>("jwtconfig", _env.EnvironmentName);
+            services.TryAddSingleton(jwtConfig);
+            services.AddAuthentication(options =>
+                {
+                    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                    options.DefaultChallengeScheme = nameof(ResponseAuthenticationHandler); //401
+                    options.DefaultForbidScheme = nameof(ResponseAuthenticationHandler);    //403
+                })
+                .AddJwtBearer(options =>
+                {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateLifetime = true,
+                        ValidateIssuerSigningKey = true,
+                        ValidIssuer = jwtConfig.Issuer,
+                        ValidAudience = jwtConfig.Audience,
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtConfig.SecurityKey)),
+                        ClockSkew = TimeSpan.Zero
+                    };
+                })
+                .AddScheme<AuthenticationSchemeOptions, ResponseAuthenticationHandler>(nameof(ResponseAuthenticationHandler), o => { }); ;
             #endregion
         }
 
@@ -206,6 +240,13 @@ namespace Admin.Core
             });
 
             #endregion
+
+
+            //认证
+            //app.UseAuthentication();
+
+            //授权
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
 

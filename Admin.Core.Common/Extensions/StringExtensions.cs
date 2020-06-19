@@ -1,4 +1,6 @@
-﻿namespace Admin.Core.Common.Extensions
+﻿using System;
+
+namespace Admin.Core.Common.Extensions
 {
     public static class StringExtensions
     {
@@ -10,6 +12,16 @@
         public static bool NotNull(this string s)
         {
             return !string.IsNullOrWhiteSpace(s);
+        }
+        /// <summary>
+        /// 与字符串进行比较，忽略大小写
+        /// </summary>
+        /// <param name="s"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static bool EqualsIgnoreCase(this string s, string value)
+        {
+            return s.Equals(value, StringComparison.OrdinalIgnoreCase);
         }
 
         /// <summary>
