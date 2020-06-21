@@ -12,6 +12,7 @@ namespace Admin.Core
             var host = builder.Build();
             host.Run();
 
+
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args)

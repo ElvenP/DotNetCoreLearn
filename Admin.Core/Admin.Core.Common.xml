@@ -24,6 +24,11 @@
             事务隔离级别
             </summary>
         </member>
+        <member name="T:Admin.Core.Common.Auth.IUser">
+            <summary>
+            用户信息接口
+            </summary>
+        </member>
         <member name="P:Admin.Core.Common.Auth.IUser.Id">
             <summary>
             主键
@@ -222,6 +227,21 @@
             用户权限 admin:user:用户主键:permissions
             </summary>
         </member>
+        <member name="T:Admin.Core.Common.Cache.CacheType">
+            <summary>
+            缓存类型
+            </summary>
+        </member>
+        <member name="F:Admin.Core.Common.Cache.CacheType.Memory">
+            <summary>
+            内存缓存
+            </summary>
+        </member>
+        <member name="F:Admin.Core.Common.Cache.CacheType.Redis">
+            <summary>
+            Redis缓存
+            </summary>
+        </member>
         <member name="T:Admin.Core.Common.Cache.ICache">
             <summary>
             缓存接口
@@ -323,6 +343,16 @@
             <param name="expire">有效期</param>
             <returns></returns>
         </member>
+        <member name="T:Admin.Core.Common.Cache.MemoryCache">
+            <summary>
+            内存缓存
+            </summary>
+        </member>
+        <member name="T:Admin.Core.Common.Cache.RedisCache">
+            <summary>
+            Redis缓存
+            </summary>
+        </member>
         <member name="T:Admin.Core.Common.Configs.AppConfig">
             <summary>
             应用配置
@@ -351,6 +381,41 @@
         <member name="P:Admin.Core.Common.Configs.AopConfig.Transaction">
             <summary>
             事物
+            </summary>
+        </member>
+        <member name="T:Admin.Core.Common.Configs.CacheConfig">
+            <summary>
+            缓存配置
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Common.Configs.CacheConfig.Type">
+            <summary>
+            缓存类型
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Common.Configs.CacheConfig.TypeRateLimit">
+            <summary>
+            限流缓存类型
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Common.Configs.CacheConfig.Redis">
+            <summary>
+            Redis配置
+            </summary>
+        </member>
+        <member name="T:Admin.Core.Common.Configs.RedisConfig">
+            <summary>
+            Redis配置
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Common.Configs.RedisConfig.ConnectionString">
+            <summary>
+            连接字符串
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Common.Configs.RedisConfig.ConnectionStringRateLimit">
+            <summary>
+            限流连接字符串
             </summary>
         </member>
         <member name="T:Admin.Core.Common.Configs.DbConfig">
@@ -493,6 +558,67 @@
             <param name="environmentName">环境名称</param>
             <param name="reloadOnChange">自动更新</param>
         </member>
+        <member name="T:Admin.Core.Common.Helpers.DesEncrypt">
+            <summary>
+            Des加解密
+            </summary>
+        </member>
+        <member name="M:Admin.Core.Common.Helpers.DesEncrypt.Encrypt(System.String,System.String)">
+            <summary>
+            DES+Base64加密
+            <para>采用ECB、PKCS7</para>
+            </summary>
+            <param name="encryptString">加密字符串</param>
+            <param name="key">秘钥</param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.Core.Common.Helpers.DesEncrypt.Decrypt(System.String,System.String)">
+            <summary>
+            DES+Base64解密
+            <para>采用ECB、PKCS7</para>
+            </summary>
+            <param name="decryptString">解密字符串</param>
+            <param name="key">秘钥</param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.Core.Common.Helpers.DesEncrypt.Encrypt4Hex(System.String,System.String,System.Boolean)">
+            <summary>
+            DES+16进制加密
+            <para>采用ECB、PKCS7</para>
+            </summary>
+            <param name="encryptString">加密字符串</param>
+            <param name="key">秘钥</param>
+            <param name="lowerCase">是否小写</param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.Core.Common.Helpers.DesEncrypt.Decrypt4Hex(System.String,System.String)">
+            <summary>
+            DES+16进制解密
+            <para>采用ECB、PKCS7</para>
+            </summary>
+            <param name="decryptString">解密字符串</param>
+            <param name="key">秘钥</param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.Core.Common.Helpers.DesEncrypt.Encrypt(System.String,System.String,System.Boolean,System.Boolean)">
+            <summary>
+            DES加密
+            </summary>
+            <param name="encryptString"></param>
+            <param name="key"></param>
+            <param name="hex"></param>
+            <param name="lowerCase"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.Core.Common.Helpers.DesEncrypt.Decrypt(System.String,System.String,System.Boolean)">
+            <summary>
+            DES解密
+            </summary>
+            <param name="decryptString"></param>
+            <param name="key"></param>
+            <param name="hex"></param>
+            <returns></returns>
+        </member>
         <member name="M:Admin.Core.Common.Helpers.FileHelper.WriteFile(System.String,System.String)">
             <summary>
             写文件
@@ -523,10 +649,65 @@
             <param name="encode">编码格式</param>
             <returns></returns>
         </member>
+        <member name="T:Admin.Core.Common.Helpers.MD5Encrypt">
+            <summary>
+            MD5加密
+            </summary>
+        </member>
+        <member name="M:Admin.Core.Common.Helpers.MD5Encrypt.Encrypt16(System.String)">
+            <summary>
+            16位MD5加密
+            </summary>
+            <param name="password"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.Core.Common.Helpers.MD5Encrypt.Encrypt32(System.String)">
+            <summary>
+            32位MD5加密
+            </summary>
+            <param name="password"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.Core.Common.Helpers.MD5Encrypt.Encrypt64(System.String)">
+            <summary>
+            64位MD5加密
+            </summary>
+            <param name="password"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.Core.Common.Helpers.StringHelper.GenerateRandom(System.Int32)">
+            <summary>
+            生成随机字符串，默认32位
+            </summary>
+            <param name="length">随机数长度</param>
+            <returns></returns>
+        </member>
         <member name="T:Admin.Core.Common.Helpers.UtilConvert">
             <summary>
             数据类型转换
             </summary>
+        </member>
+        <member name="M:Admin.Core.Common.Helpers.UtilConvert.ToHex(System.Byte[],System.Boolean)">
+            <summary>
+            转换为16进制
+            </summary>
+            <param name="bytes"></param>
+            <param name="lowerCase">是否小写</param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.Core.Common.Helpers.UtilConvert.ToBase64(System.Byte[])">
+            <summary>
+            转换为Base64
+            </summary>
+            <param name="bytes"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.Core.Common.Helpers.UtilConvert.HexToBytes(System.String)">
+            <summary>
+            16进制转字节数组
+            </summary>
+            <param name="s"></param>
+            <returns></returns>
         </member>
         <member name="T:Admin.Core.Common.Output.IResponseOutput">
             <summary>

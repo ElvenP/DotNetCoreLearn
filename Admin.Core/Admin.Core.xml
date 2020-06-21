@@ -45,6 +45,27 @@
             响应认证处理器
             </summary>
         </member>
+        <member name="M:Admin.Core.Controllers.Admin.AuthController.GetPassWordEncryptKey">
+            <summary>
+            获取密钥
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.Core.Controllers.Admin.AuthController.Login(Admin.Core.Service.Admin.Auth.Input.AuthLoginInput)">
+            <summary>
+            用户登录
+            根据登录信息生成Token
+            </summary>
+            <param name="input">登录信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Admin.Core.Controllers.Admin.AuthController.GetToken(Admin.Core.Common.Output.ResponseOutput{Admin.Core.Service.Admin.Auth.Output.AuthLoginOutput})">
+            <summary>
+            获得token
+            </summary>
+            <param name="output"></param>
+            <returns></returns>
+        </member>
         <member name="M:Admin.Core.Controllers.Admin.UserController.Get(System.Int64)">
             <summary>
             查询单条用户

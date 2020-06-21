@@ -1,5 +1,8 @@
 ﻿namespace Admin.Core.Common.Auth
 {
+    /// <summary>
+    /// 用户信息接口
+    /// </summary>
     public interface IUser
     {
         /// <summary>

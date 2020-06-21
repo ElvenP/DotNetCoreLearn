@@ -4,6 +4,71 @@
         <name>Admin.Core.Service</name>
     </assembly>
     <members>
+        <member name="T:Admin.Core.Service.Admin.Auth.IAuthService">
+            <summary>
+            权限服务
+            </summary>	
+        </member>
+        <member name="T:Admin.Core.Service.Admin.Auth.Input.AuthLoginInput">
+            <summary>
+            登录信息
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Service.Admin.Auth.Input.AuthLoginInput.UserName">
+            <summary>
+            账号
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Service.Admin.Auth.Input.AuthLoginInput.Password">
+            <summary>
+            密码
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Service.Admin.Auth.Input.AuthLoginInput.PasswordKey">
+            <summary>
+            密码键
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Service.Admin.Auth.Input.AuthLoginInput.VerifyCode">
+            <summary>
+            验证码
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Service.Admin.Auth.Input.AuthLoginInput.VerifyCodeKey">
+            <summary>
+            验证码键
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Service.Admin.Auth.Output.AuthGetVerifyCodeOutput.Key">
+            <summary>
+            缓存键
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Service.Admin.Auth.Output.AuthGetVerifyCodeOutput.Img">
+            <summary>
+            图片
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Service.Admin.Auth.Output.AuthLoginOutput.Id">
+            <summary>
+            主键Id
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Service.Admin.Auth.Output.AuthLoginOutput.UserName">
+            <summary>
+            账号
+            </summary>
+        </member>
+        <member name="P:Admin.Core.Service.Admin.Auth.Output.AuthLoginOutput.NickName">
+            <summary>
+            姓名
+            </summary>
+        </member>
+        <member name="T:Admin.Core.Service.Admin.Auth.MapConfig">
+            <summary>
+            映射配置
+            </summary>
+        </member>
         <member name="T:Admin.Core.Service.Admin.User.Input.UserAddInput">
             <summary>
             添加

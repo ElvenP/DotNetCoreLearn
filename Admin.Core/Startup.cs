@@ -7,6 +7,8 @@ using System.Text;
 using Admin.Core.Auth;
 using Admin.Core.Common.Aop;
 using Admin.Core.Common.Attributes;
+using Admin.Core.Common.Auth;
+using Admin.Core.Common.Cache;
 using Admin.Core.Common.Configs;
 using Admin.Core.Common.Helpers;
 using Admin.Core.Enums;
@@ -18,12 +20,16 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using MicrosoftMemoryCache = Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerUI;
+using MemoryCache = Admin.Core.Common.Cache.MemoryCache;
+
 
 namespace Admin.Core
 {
@@ -51,12 +57,10 @@ namespace Admin.Core
         {
             //数据库
             // services.AddDb(_env, _appConfig);
-
             var serviceAssembly = Assembly.Load("Admin.Core.Service");
             services.AddAutoMapper(serviceAssembly);
             services.AddControllers();
-
-
+            
             #region Swagger Api文档
 
             if (_env.IsDevelopment() || _appConfig.Swagger)
@@ -117,7 +121,7 @@ namespace Admin.Core
             #endregion
 
 
-            #region Jwt身份认证
+            //#region Jwt身份认证
 
             var jwtConfig = _configHelper.Get<JwtConfig>("jwtconfig", _env.EnvironmentName);
             services.TryAddSingleton(jwtConfig);
@@ -144,7 +148,7 @@ namespace Admin.Core
                 .AddScheme<AuthenticationSchemeOptions, ResponseAuthenticationHandler>(
                     nameof(ResponseAuthenticationHandler), o => { });
 
-            #endregion
+            //#endregion
         }
 
 
@@ -164,6 +168,29 @@ namespace Admin.Core
 
                 builder.RegisterInstance(fsql).SingleInstance();
                 builder.RegisterType(typeof(UnitOfWorkManager)).InstancePerLifetimeScope();
+
+                builder.RegisterType<HttpContextAccessor>().As<IHttpContextAccessor>().SingleInstance();
+                builder.RegisterType<User>().As<IUser>().SingleInstance();
+                builder.RegisterType<UserToken>().As<IUserToken>().InstancePerLifetimeScope();
+
+
+                #region 缓存
+                var cacheConfig = _configHelper.Get<CacheConfig>("cacheconfig", _env.EnvironmentName);
+                if (cacheConfig.Type == CacheType.Redis)
+                {
+                    var csredis = new CSRedis.CSRedisClient(cacheConfig.Redis.ConnectionString);
+                    RedisHelper.Initialization(csredis);
+
+                    builder.RegisterType<RedisCache>().As<ICache>().SingleInstance();
+                }
+                else
+                {
+                    builder.RegisterType<MicrosoftMemoryCache.MemoryCache>().As<MicrosoftMemoryCache.IMemoryCache>().SingleInstance();
+                    builder.RegisterType<MemoryCache>().As<ICache>().SingleInstance();
+                }
+                #endregion
+
+
 
                 #region SingleInstance
 
@@ -246,7 +273,7 @@ namespace Admin.Core
 
 
             //认证
-            //app.UseAuthentication();
+            app.UseAuthentication();
 
             //授权
             app.UseAuthorization();
