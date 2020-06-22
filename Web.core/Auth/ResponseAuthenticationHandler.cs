@@ -8,9 +8,9 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
-using StatusCodes = Admin.Core.Enums.StatusCodes;
+using StatusCodes = Web.core.Enums.StatusCodes;
 
-namespace Admin.Core.Auth
+namespace Web.core.Auth
 { /// <summary>
     /// 响应认证处理器
     /// </summary>

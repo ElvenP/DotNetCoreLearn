@@ -4,7 +4,7 @@ using Admin.Core.Common.Attributes;
 using Admin.Core.Common.Extensions;
 using Admin.Core.Service.Admin.User;
 
-namespace Admin.Core.Auth
+namespace Web.core.Auth
 {
     /// <summary>
     /// 权限处理

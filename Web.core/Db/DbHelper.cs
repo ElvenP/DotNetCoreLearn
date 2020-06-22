@@ -12,7 +12,7 @@ using FreeSql.DataAnnotations;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
-namespace Admin.Core.Db
+namespace Web.core.Db
 {
     public class DbHelper
     {                              

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
+﻿using System.Diagnostics;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Admin.Core.Common.Auth;
@@ -10,10 +7,9 @@ using Admin.Core.Service.Admin.Auth;
 using Admin.Core.Service.Admin.Auth.Input;
 using Admin.Core.Service.Admin.Auth.Output;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Admin.Core.Controllers.Admin
+namespace Web.core.Controllers.Admin
 {
     [Route("api/[controller]")]
     [ApiController]

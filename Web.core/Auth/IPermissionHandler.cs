@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace Admin.Core.Auth
+namespace Web.core.Auth
 {
     /// <summary>
     /// 权限处理接口

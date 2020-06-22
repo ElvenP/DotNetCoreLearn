@@ -1,6 +1,6 @@
 ﻿using Admin.Core.Model.Admin;
 
-namespace Admin.Core.Db
+namespace Web.core.Db
 {
     public class Data
     {

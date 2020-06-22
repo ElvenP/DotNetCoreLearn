@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Admin.Core.Attributes;
-using Admin.Core.Common.Attributes;
+﻿using System.Threading.Tasks;
 using Admin.Core.Common.Auth;
 using Admin.Core.Common.Output;
-using Admin.Core.Model.Admin;
 using Admin.Core.Service.Admin.User;
 using Admin.Core.Service.Admin.User.Output;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Web.core.Attributes;
 
-namespace Admin.Core.Controllers.Admin
+namespace Web.core.Controllers.Admin
 {
     [Route("api/[controller]")]
     [ApiController]

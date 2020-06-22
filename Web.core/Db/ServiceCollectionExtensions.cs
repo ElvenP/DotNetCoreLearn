@@ -7,7 +7,7 @@ using FreeSql;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace Admin.Core.Db
+namespace Web.core.Db
 {
     public static class ServiceCollectionExtensions
     {/// <summary>

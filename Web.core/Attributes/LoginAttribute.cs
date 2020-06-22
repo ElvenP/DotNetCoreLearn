@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Admin.Core.Attributes
+namespace Web.core.Attributes
 {
     /// <summary>
     /// 启用登录

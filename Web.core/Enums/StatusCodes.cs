@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace Admin.Core.Enums
+namespace Web.core.Enums
 {
     /// <summary>
     /// 状态码枚举

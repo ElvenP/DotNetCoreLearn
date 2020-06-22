@@ -1,4 +1,4 @@
-﻿namespace Admin.Core.Enums
+﻿namespace Web.core.Enums
 {
 
     /// <summary>
