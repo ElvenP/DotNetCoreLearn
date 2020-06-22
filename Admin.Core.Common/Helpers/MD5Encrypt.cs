@@ -6,7 +6,7 @@ namespace Admin.Core.Common.Helpers
 {/// <summary>
     /// MD5加密
     /// </summary>
-    public class MD5Encrypt
+    public class Md5Encrypt
     {
         /// <summary>
         /// 16位MD5加密
@@ -18,10 +18,8 @@ namespace Admin.Core.Common.Helpers
             if (password.IsNull())
                 return null;
 
-            using (var md5 = MD5.Create())
-            {
-                return md5.ComputeHash(Encoding.UTF8.GetBytes(password)).ToHex();
-            }
+            using var md5 = MD5.Create();
+            return md5.ComputeHash(Encoding.UTF8.GetBytes(password)).ToHex();
         }
 
         /// <summary>
@@ -34,16 +32,14 @@ namespace Admin.Core.Common.Helpers
             if (password.IsNull())
                 return null;
 
-            using (var md5 = MD5.Create())
+            using var md5 = MD5.Create();
+            string pwd = string.Empty;
+            byte[] s = md5.ComputeHash(Encoding.UTF8.GetBytes(password));
+            foreach (var item in s)
             {
-                string pwd = string.Empty;
-                byte[] s = md5.ComputeHash(Encoding.UTF8.GetBytes(password));
-                foreach (var item in s)
-                {
-                    pwd = string.Concat(pwd, item.ToString("X"));
-                }
-                return pwd;
+                pwd = string.Concat(pwd, item.ToString("X"));
             }
+            return pwd;
         }
 
         /// <summary>
@@ -56,11 +52,9 @@ namespace Admin.Core.Common.Helpers
             if (password.IsNull())
                 return null;
 
-            using (var md5 = MD5.Create())
-            {
-                byte[] s = md5.ComputeHash(Encoding.UTF8.GetBytes(password));
-                return s.ToBase64();
-            }
+            using var md5 = MD5.Create();
+            byte[] s = md5.ComputeHash(Encoding.UTF8.GetBytes(password));
+            return s.ToBase64();
         }
     }
 }

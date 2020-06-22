@@ -31,9 +31,9 @@ namespace Admin.Core.Common.Helpers
 
             var result = new StringBuilder();
             var format = lowerCase ? "x2" : "X2";
-            for (var i = 0; i < bytes.Length; i++)
+            foreach (var t in bytes)
             {
-                result.Append(bytes[i].ToString(format));
+                result.Append(t.ToString(format));
             }
 
             return result.ToString();

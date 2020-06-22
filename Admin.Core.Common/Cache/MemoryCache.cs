@@ -50,9 +50,10 @@ namespace Admin.Core.Common.Cache
 
             var keys = GetAllKeys().Where(k => Regex.IsMatch(k, pattern));
 
-            if (keys != null && keys.Count() > 0)
+            var enumerable = keys as string[] ?? keys.ToArray();
+            if (enumerable.Any())
             {
-                return await DelAsync(keys.ToArray());
+                return await DelAsync(enumerable.ToArray());
             }
 
             return default;
@@ -115,7 +116,7 @@ namespace Admin.Core.Common.Cache
         private List<string> GetAllKeys()
         {
             const BindingFlags flags = BindingFlags.Instance | BindingFlags.NonPublic;
-            var entries = _memoryCache.GetType().GetField("_entries", flags).GetValue(_memoryCache);
+            var entries = _memoryCache.GetType().GetField("_entries", flags)?.GetValue(_memoryCache);
             var cacheItems = entries as IDictionary;
             var keys = new List<string>();
             if (cacheItems == null) return keys;

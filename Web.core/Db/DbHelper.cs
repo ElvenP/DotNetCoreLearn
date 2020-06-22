@@ -19,7 +19,6 @@ namespace Web.core.Db
         public static async Task CreateDataBase(DbConfig dbConfig)
         {
             if (!dbConfig.CreateDb || dbConfig.Type == DataType.Sqlite) return;
-            ;
 
             var db = new FreeSqlBuilder()
                 .UseConnectionString(dbConfig.Type, dbConfig.CreateDbConnectionString).Build();
@@ -56,24 +55,27 @@ namespace Web.core.Db
             //};
 
             // 同步结构
-            var dbType = dbConfig.Type.ToString();
-            Console.WriteLine($"\r\n{(msg.NotNull() ? msg : $"sync {dbType} structure")} started");
-            if(dbConfig.Type == DataType.Oracle)
+            if (dbConfig != null)
             {
-                db.CodeFirst.IsSyncStructureToUpper = true;
-            }
-            db.CodeFirst.SyncStructure(new Type[]
-            {
+                var dbType = dbConfig.Type.ToString();
+                Console.WriteLine($"\r\n{(msg.NotNull() ? msg : $"sync {dbType} structure")} started");
+                if(dbConfig.Type == DataType.Oracle)
+                {
+                    db.CodeFirst.IsSyncStructureToUpper = true;
+                }
+                db.CodeFirst.SyncStructure(new Type[]
+                {
            
-                typeof(ApiEntity),
-                typeof(ViewEntity),
-                typeof(PermissionEntity),
-                typeof(UserEntity),
-                typeof(RoleEntity),
-                typeof(UserRoleEntity),
-                typeof(RolePermissionEntity)
-            });
-            Console.WriteLine($"{(msg.NotNull() ? msg : $"sync {dbType} structure")} succeed\r\n");
+                    typeof(ApiEntity),
+                    typeof(ViewEntity),
+                    typeof(PermissionEntity),
+                    typeof(UserEntity),
+                    typeof(RoleEntity),
+                    typeof(UserRoleEntity),
+                    typeof(RolePermissionEntity)
+                });
+                Console.WriteLine($"{(msg.NotNull() ? msg : $"sync {dbType} structure")} succeed\r\n");
+            }
         }
 
         /// <summary>
@@ -93,46 +95,49 @@ namespace Web.core.Db
         ) where T : class
         {
             var table = typeof(T).GetCustomAttributes(typeof(TableAttribute),false).FirstOrDefault() as TableAttribute;
-            var tableName = table.Name;
-
-            try
+            if (table != null)
             {
-                if (!await db.Queryable<T>().AnyAsync())
+                var tableName = table.Name;
+
+                try
                 {
-                    if (data?.Length > 0)
+                    if (!await db.Queryable<T>().AnyAsync())
                     {
-                        var insert = db.Insert<T>();
-
-                        if(tran != null)
+                        if (data?.Length > 0)
                         {
-                            insert = insert.WithTransaction(tran);
-                        }
+                            var insert = db.Insert<T>();
 
-                        if(dbConfig.Type == DataType.SqlServer)
-                        {
-                            var insrtSql = insert.AppendData(data).InsertIdentity().ToSql();
-                            await db.Ado.ExecuteNonQueryAsync($"SET IDENTITY_INSERT {tableName} ON\n {insrtSql} \nSET IDENTITY_INSERT {tableName} OFF");
+                            if(tran != null)
+                            {
+                                insert = insert.WithTransaction(tran);
+                            }
+
+                            if(dbConfig != null && dbConfig.Type == DataType.SqlServer)
+                            {
+                                var instrSql = insert.AppendData(data).InsertIdentity().ToSql();
+                                await db.Ado.ExecuteNonQueryAsync($"SET IDENTITY_INSERT {tableName} ON\n {instrSql} \nSET IDENTITY_INSERT {tableName} OFF");
+                            }
+                            else
+                            {
+                                await insert.AppendData(data).InsertIdentity().ExecuteAffrowsAsync();
+                            }
+                        
+                            Console.WriteLine($"table: {tableName} sync data succeed");
                         }
                         else
                         {
-                            await insert.AppendData(data).InsertIdentity().ExecuteAffrowsAsync();
+                            Console.WriteLine($"table: {tableName} import data []");
                         }
-                        
-                        Console.WriteLine($"table: {tableName} sync data succeed");
                     }
                     else
                     {
-                        Console.WriteLine($"table: {tableName} import data []");
+                        Console.WriteLine($"table: {tableName} record already exists");
                     }
                 }
-                else
+                catch (Exception ex)
                 {
-                    Console.WriteLine($"table: {tableName} record already exists");
+                    Console.WriteLine($"table: {tableName} sync data failed.\n{ex.Message}");
                 }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"table: {tableName} sync data failed.\n{ex.Message}");
             }
         }
 

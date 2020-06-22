@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
@@ -21,7 +22,7 @@ namespace Admin.Core.Common.Auth
         {
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtConfig.SecurityKey));
             var signingCredentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-            var refreshExpires = DateTime.Now.AddMinutes(_jwtConfig.RefreshExpires).ToString();
+            var refreshExpires = DateTime.Now.AddMinutes(_jwtConfig.RefreshExpires).ToString(CultureInfo.InvariantCulture);
             claims = claims.Append(new Claim(ClaimAttributes.RefreshExpires, refreshExpires)).ToArray();
 
             var token = new JwtSecurityToken(

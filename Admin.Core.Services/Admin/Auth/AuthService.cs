@@ -3,9 +3,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Admin.Core.Common.Output;
 using Admin.Core.Repository.Admin;
-using Admin.Core.Common.Auth;
 using Admin.Core.Common.Cache;
-using Admin.Core.Common.Configs;
 using Admin.Core.Common.Extensions;
 using Admin.Core.Common.Helpers;
 using Admin.Core.Service.Admin.Auth.Input;
@@ -64,7 +62,7 @@ namespace Admin.Core.Service.Admin.Auth
             }
             #endregion
 
-            var password = MD5Encrypt.Encrypt32(input.Password);
+            var password = Md5Encrypt.Encrypt32(input.Password);
             if (user.Password != password)
             {
                 return ResponseOutput.NotOk("密码输入有误！", 4);

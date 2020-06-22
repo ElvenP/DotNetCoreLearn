@@ -4,22 +4,22 @@
         <name>Web.core</name>
     </assembly>
     <members>
-        <member name="T:Admin.Core.Attributes.LoginAttribute">
+        <member name="T:Web.core.Attributes.LoginAttribute">
             <summary>
             启用登录
             </summary>
         </member>
-        <member name="T:Admin.Core.Attributes.PermissionAttribute">
+        <member name="T:Web.core.Attributes.PermissionAttribute">
             <summary>
             启用权限
             </summary>
         </member>
-        <member name="T:Admin.Core.Auth.IPermissionHandler">
+        <member name="T:Web.core.Auth.IPermissionHandler">
             <summary>
             权限处理接口
             </summary>
         </member>
-        <member name="M:Admin.Core.Auth.IPermissionHandler.ValidateAsync(System.String,System.String)">
+        <member name="M:Web.core.Auth.IPermissionHandler.ValidateAsync(System.String,System.String)">
             <summary>
             权限验证
             </summary>
@@ -27,12 +27,12 @@
             <param name="httpMethod"></param>
             <returns></returns>
         </member>
-        <member name="T:Admin.Core.Auth.PermissionHandler">
+        <member name="T:Web.core.Auth.PermissionHandler">
             <summary>
             权限处理
             </summary>
         </member>
-        <member name="M:Admin.Core.Auth.PermissionHandler.ValidateAsync(System.String,System.String)">
+        <member name="M:Web.core.Auth.PermissionHandler.ValidateAsync(System.String,System.String)">
             <summary>
             权限验证
             </summary>
@@ -40,18 +40,18 @@
             <param name="httpMethod">http请求方法</param>
             <returns></returns>
         </member>
-        <member name="T:Admin.Core.Auth.ResponseAuthenticationHandler">
+        <member name="T:Web.core.Auth.ResponseAuthenticationHandler">
             <summary>
             响应认证处理器
             </summary>
         </member>
-        <member name="M:Admin.Core.Controllers.Admin.AuthController.GetPassWordEncryptKey">
+        <member name="M:Web.core.Controllers.Admin.AuthController.GetPassWordEncryptKey">
             <summary>
             获取密钥
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Admin.Core.Controllers.Admin.AuthController.Login(Admin.Core.Service.Admin.Auth.Input.AuthLoginInput)">
+        <member name="M:Web.core.Controllers.Admin.AuthController.Login(Admin.Core.Service.Admin.Auth.Input.AuthLoginInput)">
             <summary>
             用户登录
             根据登录信息生成Token
@@ -59,26 +59,26 @@
             <param name="input">登录信息</param>
             <returns></returns>
         </member>
-        <member name="M:Admin.Core.Controllers.Admin.AuthController.GetToken(Admin.Core.Common.Output.ResponseOutput{Admin.Core.Service.Admin.Auth.Output.AuthLoginOutput})">
+        <member name="M:Web.core.Controllers.Admin.AuthController.GetToken(Admin.Core.Common.Output.ResponseOutput{Admin.Core.Service.Admin.Auth.Output.AuthLoginOutput})">
             <summary>
             获得token
             </summary>
             <param name="output"></param>
             <returns></returns>
         </member>
-        <member name="M:Admin.Core.Controllers.Admin.UserController.Get(System.Int64)">
+        <member name="M:Web.core.Controllers.Admin.UserController.Get(System.Int64)">
             <summary>
             查询单条用户
             </summary>
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:Admin.Core.Db.DbHelper.SyncStructure(IFreeSql,System.String,Admin.Core.Common.Configs.DbConfig)">
+        <member name="M:Web.core.Db.DbHelper.SyncStructure(IFreeSql,System.String,Admin.Core.Common.Configs.DbConfig)">
             <summary>
             同步结构
             </summary>
         </member>
-        <member name="M:Admin.Core.Db.DbHelper.InitDtData``1(IFreeSql,``0[],System.Data.Common.DbTransaction,Admin.Core.Common.Configs.DbConfig)">
+        <member name="M:Web.core.Db.DbHelper.InitDtData``1(IFreeSql,``0[],System.Data.Common.DbTransaction,Admin.Core.Common.Configs.DbConfig)">
             <summary>
             初始化数据表数据
             </summary>
@@ -89,27 +89,27 @@
             <param name="dbConfig"></param>
             <returns></returns>
         </member>
-        <member name="M:Admin.Core.Db.DbHelper.SyncDataAuditValue(System.Object,FreeSql.Aop.AuditValueEventArgs)">
+        <member name="M:Web.core.Db.DbHelper.SyncDataAuditValue(System.Object,FreeSql.Aop.AuditValueEventArgs)">
             <summary>
             同步数据审计方法
             </summary>
             <param name="s"></param>
             <param name="e"></param>
         </member>
-        <member name="M:Admin.Core.Db.DbHelper.SyncData(IFreeSql,Admin.Core.Common.Configs.DbConfig)">
+        <member name="M:Web.core.Db.DbHelper.SyncData(IFreeSql,Admin.Core.Common.Configs.DbConfig)">
             <summary>
             同步数据
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Admin.Core.Db.DbHelper.GenerateSimpleJsonData(IFreeSql)">
+        <member name="M:Web.core.Db.DbHelper.GenerateSimpleJsonData(IFreeSql)">
             <summary>
             生成极简数据
             </summary>
             <param name="db"></param>
             <returns></returns>
         </member>
-        <member name="M:Admin.Core.Db.ServiceCollectionExtensions.AddDb(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Hosting.IHostEnvironment,Admin.Core.Common.Configs.AppConfig)">
+        <member name="M:Web.core.Db.ServiceCollectionExtensions.AddDb(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Hosting.IHostEnvironment,Admin.Core.Common.Configs.AppConfig)">
             <summary>
             添加数据库
             </summary>
@@ -117,52 +117,52 @@
             <param name="env"></param>
             <param name="appConfig"></param>
         </member>
-        <member name="T:Admin.Core.Enums.ApiVersion">
+        <member name="T:Web.core.Enums.ApiVersion">
             <summary>
             接口版本
             </summary>
         </member>
-        <member name="F:Admin.Core.Enums.ApiVersion.V1">
+        <member name="F:Web.core.Enums.ApiVersion.V1">
             <summary>
             V1 版本
             </summary>
         </member>
-        <member name="F:Admin.Core.Enums.ApiVersion.V2">
+        <member name="F:Web.core.Enums.ApiVersion.V2">
             <summary>
             V2 版本
             </summary>
         </member>
-        <member name="T:Admin.Core.Enums.StatusCodes">
+        <member name="T:Web.core.Enums.StatusCodes">
             <summary>
             状态码枚举
             </summary>
         </member>
-        <member name="F:Admin.Core.Enums.StatusCodes.Status0NotOk">
+        <member name="F:Web.core.Enums.StatusCodes.Status0NotOk">
             <summary>
             操作失败
             </summary>
         </member>
-        <member name="F:Admin.Core.Enums.StatusCodes.Status1Ok">
+        <member name="F:Web.core.Enums.StatusCodes.Status1Ok">
             <summary>
             操作成功
             </summary>
         </member>
-        <member name="F:Admin.Core.Enums.StatusCodes.Status401Unauthorized">
+        <member name="F:Web.core.Enums.StatusCodes.Status401Unauthorized">
             <summary>
             未登录（需要重新登录）
             </summary>
         </member>
-        <member name="F:Admin.Core.Enums.StatusCodes.Status403Forbidden">
+        <member name="F:Web.core.Enums.StatusCodes.Status403Forbidden">
             <summary>
             权限不足
             </summary>
         </member>
-        <member name="F:Admin.Core.Enums.StatusCodes.Status404NotFound">
+        <member name="F:Web.core.Enums.StatusCodes.Status404NotFound">
             <summary>
             资源不存在
             </summary>
         </member>
-        <member name="F:Admin.Core.Enums.StatusCodes.Status500InternalServerError">
+        <member name="F:Web.core.Enums.StatusCodes.Status500InternalServerError">
             <summary>
             系统内部错误（非业务代码里显式抛出的异常，例如由于数据不正确导致空指针异常、数据库异常等等）
             </summary>

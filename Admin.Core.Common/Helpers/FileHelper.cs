@@ -6,11 +6,8 @@ namespace Admin.Core.Common.Helpers
 {
      public class FileHelper : IDisposable
     {
-        private bool _alreadyDispose = false;
+        private bool _alreadyDispose;
 
-        public FileHelper()
-        {
-        }
         ~FileHelper()
         {
             Dispose();
@@ -31,16 +28,16 @@ namespace Admin.Core.Common.Helpers
         /// <summary>
         /// 写文件
         /// </summary>
-        /// <param name="Path">文件路径</param>
-        /// <param name="Strings">文件内容</param>
-        public static void WriteFile(string Path, string Strings)
+        /// <param name="path">文件路径</param>
+        /// <param name="strings">文件内容</param>
+        public static void WriteFile(string path, string strings)
         {
-            if (!File.Exists(Path))
+            if (!File.Exists(path))
             {
-                File.Create(Path).Close();
+                File.Create(path).Close();
             }
-            StreamWriter streamWriter = new StreamWriter(Path, false);
-            streamWriter.Write(Strings);
+            StreamWriter streamWriter = new StreamWriter(path, false);
+            streamWriter.Write(strings);
             streamWriter.Close();
             streamWriter.Dispose();
         }
@@ -48,17 +45,17 @@ namespace Admin.Core.Common.Helpers
         /// <summary>
         /// 写文件
         /// </summary>
-        /// <param name="Path">文件路径</param>
-        /// <param name="Strings">文件内容</param>
+        /// <param name="path">文件路径</param>
+        /// <param name="strings">文件内容</param>
         /// <param name="encode">编码格式</param>
-        public static void WriteFile(string Path, string Strings, Encoding encode)
+        public static void WriteFile(string path, string strings, Encoding encode)
         {
-            if (!File.Exists(Path))
+            if (!File.Exists(path))
             {
-                File.Create(Path).Close();
+                File.Create(path).Close();
             }
-            StreamWriter streamWriter = new StreamWriter(Path, false, encode);
-            streamWriter.Write(Strings);
+            StreamWriter streamWriter = new StreamWriter(path, false, encode);
+            streamWriter.Write(strings);
             streamWriter.Close();
             streamWriter.Dispose();
         }
@@ -68,16 +65,16 @@ namespace Admin.Core.Common.Helpers
         /// <summary>
         /// 读文件
         /// </summary>
-        /// <param name="Path">文件路径</param>
+        /// <param name="path">文件路径</param>
         /// <returns></returns>
-        public static string ReadFile(string Path)
+        public static string ReadFile(string path)
         {
             string s;
-            if (!File.Exists(Path))
+            if (!File.Exists(path))
                 s = "不存在相应的目录";
             else
             {
-                StreamReader streamReader = new StreamReader(Path);
+                StreamReader streamReader = new StreamReader(path);
                 s = streamReader.ReadToEnd();
                 streamReader.Close();
                 streamReader.Dispose();
@@ -89,17 +86,17 @@ namespace Admin.Core.Common.Helpers
         /// <summary>
         /// 读文件
         /// </summary>
-        /// <param name="Path">文件路径</param>
+        /// <param name="path">文件路径</param>
         /// <param name="encode">编码格式</param>
         /// <returns></returns>
-        public static string ReadFile(string Path, Encoding encode)
+        public static string ReadFile(string path, Encoding encode)
         {
             string s;
-            if (!File.Exists(Path))
+            if (!File.Exists(path))
                 s = "不存在相应的目录";
             else
             {
-                StreamReader streamReader = new StreamReader(Path, encode);
+                StreamReader streamReader = new StreamReader(path, encode);
                 s = streamReader.ReadToEnd();
                 streamReader.Close();
                 streamReader.Dispose();

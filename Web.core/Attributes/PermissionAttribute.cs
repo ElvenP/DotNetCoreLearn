@@ -24,7 +24,7 @@ namespace Web.core.Attributes
 
             //登录验证
             var user = context.HttpContext.RequestServices.GetService<IUser>();
-            if (user == null || !(user?.Id > 0))
+            if (user == null || !(user.Id > 0))
             {
                 context.Result = new ChallengeResult();
                 return;
