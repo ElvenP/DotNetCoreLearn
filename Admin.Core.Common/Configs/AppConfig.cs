@@ -7,9 +7,9 @@
     {
 
         /// <summary>
-        /// Api地址，默认 http://*:5000
+        /// Api地址，默认 http://*:48352
         /// </summary>
-        public string Urls { get; set; } = "http://*:5000";
+        public string Urls { get; set; } = "http://*:48352";
         /// <summary>
         /// Swagger文档
         /// </summary>

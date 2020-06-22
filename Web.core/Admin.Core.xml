@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>Admin.Core</name>
+        <name>Web.core</name>
     </assembly>
     <members>
         <member name="T:Admin.Core.Attributes.LoginAttribute">

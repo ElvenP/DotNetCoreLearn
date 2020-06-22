@@ -21,17 +21,17 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using MicrosoftMemoryCache = Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerUI;
+using MicrosoftMemoryCache = Microsoft.Extensions.Caching.Memory;
 using MemoryCache = Admin.Core.Common.Cache.MemoryCache;
 
 
-namespace Admin.Core
+namespace Web.core
 {
     public class Startup
     {
@@ -60,7 +60,7 @@ namespace Admin.Core
             var serviceAssembly = Assembly.Load("Admin.Core.Service");
             services.AddAutoMapper(serviceAssembly);
             services.AddControllers();
-            
+
             #region Swagger Api文档
 
             if (_env.IsDevelopment() || _appConfig.Swagger)
@@ -71,12 +71,12 @@ namespace Admin.Core
                         c.SwaggerDoc(version, new OpenApiInfo
                         {
                             Version = version,
-                            Title = "Admin.Core"
+                            Title = "Web.Core"
                         });
                         //c.OrderActionsBy(o => o.RelativePath);
                     });
 
-                    var xmlPath = Path.Combine(BasePath, "Admin.Core.xml");
+                    var xmlPath = Path.Combine(BasePath, "Web.Core.xml");
                     c.IncludeXmlComments(xmlPath, true);
 
                     var xmlCommonPath = Path.Combine(BasePath, "Admin.Core.Common.xml");
@@ -126,11 +126,11 @@ namespace Admin.Core
             var jwtConfig = _configHelper.Get<JwtConfig>("jwtconfig", _env.EnvironmentName);
             services.TryAddSingleton(jwtConfig);
             services.AddAuthentication(options =>
-                {
-                    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-                    options.DefaultChallengeScheme = nameof(ResponseAuthenticationHandler); //401
-                    options.DefaultForbidScheme = nameof(ResponseAuthenticationHandler); //403
-                })
+            {
+                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = nameof(ResponseAuthenticationHandler); //401
+                options.DefaultForbidScheme = nameof(ResponseAuthenticationHandler); //403
+            })
                 .AddJwtBearer(options =>
                 {
                     options.TokenValidationParameters = new TokenValidationParameters
@@ -195,7 +195,7 @@ namespace Admin.Core
                 #region SingleInstance
 
                 //无接口注入单例
-                var assemblyCore = Assembly.Load("Admin.Core");
+                var assemblyCore = Assembly.Load("Web.Core");
                 var assemblyCommon = Assembly.Load("Admin.Core.Common");
                 builder.RegisterAssemblyTypes(assemblyCore, assemblyCommon)
                     .Where(t => t.GetCustomAttribute<SingleInstanceAttribute>() != null)
@@ -262,7 +262,7 @@ namespace Admin.Core
             {
                 typeof(ApiVersion).GetEnumNames().OrderByDescending(e => e).ToList().ForEach(version =>
                 {
-                    c.SwaggerEndpoint($"/swagger/{version}/swagger.json", $"Admin.Core {version}");
+                    c.SwaggerEndpoint($"/swagger/{version}/swagger.json", $"Web.Core {version}");
                 });
                 c.RoutePrefix = ""; //直接根目录访问
                 c.DocExpansion(DocExpansion.None); //折叠Api
