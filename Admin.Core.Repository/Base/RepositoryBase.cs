@@ -8,9 +8,12 @@ namespace Admin.Core.Repository.Base
 {
     public abstract class RepositoryBase<TEntity, TKey> : BaseRepository<TEntity, TKey> where TEntity : class, new()
     {
+        private readonly IUser _user;
+
         protected RepositoryBase(UnitOfWorkManager uowm, IUser user) : base(uowm.Orm, null, null
         )
         {
+            _user = user;
             uowm.Binding(this);
         }
 

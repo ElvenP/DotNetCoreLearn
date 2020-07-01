@@ -623,52 +623,52 @@
             <summary>
             写文件
             </summary>
-            <param name="Path">文件路径</param>
-            <param name="Strings">文件内容</param>
+            <param name="path">文件路径</param>
+            <param name="strings">文件内容</param>
         </member>
         <member name="M:Admin.Core.Common.Helpers.FileHelper.WriteFile(System.String,System.String,System.Text.Encoding)">
             <summary>
             写文件
             </summary>
-            <param name="Path">文件路径</param>
-            <param name="Strings">文件内容</param>
+            <param name="path">文件路径</param>
+            <param name="strings">文件内容</param>
             <param name="encode">编码格式</param>
         </member>
         <member name="M:Admin.Core.Common.Helpers.FileHelper.ReadFile(System.String)">
             <summary>
             读文件
             </summary>
-            <param name="Path">文件路径</param>
+            <param name="path">文件路径</param>
             <returns></returns>
         </member>
         <member name="M:Admin.Core.Common.Helpers.FileHelper.ReadFile(System.String,System.Text.Encoding)">
             <summary>
             读文件
             </summary>
-            <param name="Path">文件路径</param>
+            <param name="path">文件路径</param>
             <param name="encode">编码格式</param>
             <returns></returns>
         </member>
-        <member name="T:Admin.Core.Common.Helpers.MD5Encrypt">
+        <member name="T:Admin.Core.Common.Helpers.Md5Encrypt">
             <summary>
             MD5加密
             </summary>
         </member>
-        <member name="M:Admin.Core.Common.Helpers.MD5Encrypt.Encrypt16(System.String)">
+        <member name="M:Admin.Core.Common.Helpers.Md5Encrypt.Encrypt16(System.String)">
             <summary>
             16位MD5加密
             </summary>
             <param name="password"></param>
             <returns></returns>
         </member>
-        <member name="M:Admin.Core.Common.Helpers.MD5Encrypt.Encrypt32(System.String)">
+        <member name="M:Admin.Core.Common.Helpers.Md5Encrypt.Encrypt32(System.String)">
             <summary>
             32位MD5加密
             </summary>
             <param name="password"></param>
             <returns></returns>
         </member>
-        <member name="M:Admin.Core.Common.Helpers.MD5Encrypt.Encrypt64(System.String)">
+        <member name="M:Admin.Core.Common.Helpers.Md5Encrypt.Encrypt64(System.String)">
             <summary>
             64位MD5加密
             </summary>
