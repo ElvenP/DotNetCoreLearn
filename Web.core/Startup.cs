@@ -55,13 +55,13 @@ namespace Web.core
 
         public void ConfigureServices(IServiceCollection services)
         {
-            //Êý¾Ý¿â
+            //æ•°æ®åº“
             // services.AddDb(_env, _appConfig);
             var serviceAssembly = Assembly.Load("Admin.Core.Service");
             services.AddAutoMapper(serviceAssembly);
             services.AddControllers();
 
-            #region Swagger ApiÎÄµµ
+            #region Swagger Apiæ–‡æ¡£
 
             if (_env.IsDevelopment() || _appConfig.Swagger)
                 services.AddSwaggerGen(c =>
@@ -88,7 +88,7 @@ namespace Web.core
                     var xmlServicesPath = Path.Combine(BasePath, "Admin.Core.Service.xml");
                     c.IncludeXmlComments(xmlServicesPath);
 
-                    //Ìí¼ÓÉèÖÃTokenµÄ°´Å¥
+                    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Tokenï¿½Ä°ï¿½Å¥
                     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                     {
                         Description = "Value: Bearer {token}",
@@ -98,7 +98,7 @@ namespace Web.core
                         Scheme = "Bearer"
                     });
 
-                    //Ìí¼ÓJwtÑéÖ¤ÉèÖÃ
+                    //ï¿½ï¿½ï¿½Jwtï¿½ï¿½Ö¤ï¿½ï¿½ï¿½ï¿½
                     c.AddSecurityRequirement(new OpenApiSecurityRequirement
                     {
                         {
@@ -121,7 +121,7 @@ namespace Web.core
             #endregion
 
 
-            //#region JwtÉí·ÝÈÏÖ¤
+            //#region Jwtï¿½ï¿½ï¿½ï¿½ï¿½Ö¤
 
             var jwtConfig = _configHelper.Get<JwtConfig>("jwtconfig", _env.EnvironmentName);
             services.TryAddSingleton(jwtConfig);
@@ -154,7 +154,7 @@ namespace Web.core
 
         public void ConfigureContainer(ContainerBuilder builder)
         {
-            #region AutoFac IOCÈÝÆ÷
+            #region AutoFac IOCï¿½ï¿½ï¿½ï¿½
 
             try
             {
@@ -174,7 +174,7 @@ namespace Web.core
                 builder.RegisterType<UserToken>().As<IUserToken>().InstancePerLifetimeScope();
 
 
-                #region »º´æ
+                #region ï¿½ï¿½ï¿½ï¿½
                 var cacheConfig = _configHelper.Get<CacheConfig>("cacheconfig", _env.EnvironmentName);
                 if (cacheConfig.Type == CacheType.Redis)
                 {
@@ -194,13 +194,13 @@ namespace Web.core
 
                 #region SingleInstance
 
-                //ÎÞ½Ó¿Ú×¢Èëµ¥Àý
+                //ï¿½Þ½Ó¿ï¿½×¢ï¿½ëµ¥ï¿½ï¿½
                 var assemblyCore = Assembly.Load("Web.Core");
                 var assemblyCommon = Assembly.Load("Admin.Core.Common");
                 builder.RegisterAssemblyTypes(assemblyCore, assemblyCommon)
                     .Where(t => t.GetCustomAttribute<SingleInstanceAttribute>() != null)
                     .SingleInstance();
-                //ÓÐ½Ó¿Ú×¢Èëµ¥Àý
+                //ï¿½Ð½Ó¿ï¿½×¢ï¿½ëµ¥ï¿½ï¿½
                 builder.RegisterAssemblyTypes(assemblyCore, assemblyCommon)
                     .Where(t => t.GetCustomAttribute<SingleInstanceAttribute>() != null)
                     .AsImplementedInterfaces()
@@ -254,7 +254,7 @@ namespace Web.core
 
             app.UseRouting();
 
-            #region Swagger ApiÎÄµµ
+            #region Swagger  Apiæ–‡æ¡£
 
             if (!_env.IsDevelopment() && !_appConfig.Swagger) return;
             app.UseSwagger();
@@ -264,18 +264,18 @@ namespace Web.core
                 {
                     c.SwaggerEndpoint($"/swagger/{version}/swagger.json", $"Web.Core {version}");
                 });
-                c.RoutePrefix = ""; //Ö±½Ó¸ùÄ¿Â¼·ÃÎÊ
-                c.DocExpansion(DocExpansion.None); //ÕÛµþApi
-                //c.DefaultModelsExpandDepth(-1);//²»ÏÔÊ¾Models
+                c.RoutePrefix = ""; //Ö±ï¿½Ó¸ï¿½Ä¿Â¼ï¿½ï¿½ï¿½ï¿½
+                c.DocExpansion(DocExpansion.None); //ï¿½Ûµï¿½Api
+                //c.DefaultModelsExpandDepth(-1);//ï¿½ï¿½ï¿½ï¿½Ê¾Models
             });
 
             #endregion
 
 
-            //ÈÏÖ¤
+            //ï¿½ï¿½Ö¤
             app.UseAuthentication();
 
-            //ÊÚÈ¨
+            //ï¿½ï¿½È¨
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
