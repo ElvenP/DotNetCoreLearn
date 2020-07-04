@@ -6,7 +6,7 @@ using Admin.Core.Service.Admin.Auth.Input;
 namespace Admin.Core.Service.Admin.Auth
 {
     /// <summary>
-    /// 权限服务
+    /// 鏉冮檺鏈嶅姟
     /// </summary>	
     public interface IAuthService
 	{

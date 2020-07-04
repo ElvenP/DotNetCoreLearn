@@ -88,7 +88,7 @@ namespace Web.core
                     var xmlServicesPath = Path.Combine(BasePath, "Admin.Core.Service.xml");
                     c.IncludeXmlComments(xmlServicesPath);
 
-                    //�������Token�İ�ť
+                    //添加设置Token的按钮
                     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                     {
                         Description = "Value: Bearer {token}",
@@ -98,7 +98,7 @@ namespace Web.core
                         Scheme = "Bearer"
                     });
 
-                    //���Jwt��֤����
+                    //添加Jwt验证设置
                     c.AddSecurityRequirement(new OpenApiSecurityRequirement
                     {
                         {
@@ -121,7 +121,7 @@ namespace Web.core
             #endregion
 
 
-            //#region Jwt�����֤
+            //#region Jwt身份认证
 
             var jwtConfig = _configHelper.Get<JwtConfig>("jwtconfig", _env.EnvironmentName);
             services.TryAddSingleton(jwtConfig);
@@ -154,7 +154,7 @@ namespace Web.core
 
         public void ConfigureContainer(ContainerBuilder builder)
         {
-            #region AutoFac IOC����
+            #region AutoFac IOC容器
 
             try
             {
@@ -174,7 +174,7 @@ namespace Web.core
                 builder.RegisterType<UserToken>().As<IUserToken>().InstancePerLifetimeScope();
 
 
-                #region ����
+                #region 缓存
                 var cacheConfig = _configHelper.Get<CacheConfig>("cacheconfig", _env.EnvironmentName);
                 if (cacheConfig.Type == CacheType.Redis)
                 {
@@ -194,13 +194,13 @@ namespace Web.core
 
                 #region SingleInstance
 
-                //�޽ӿ�ע�뵥��
+                //无接口注入单例
                 var assemblyCore = Assembly.Load("Web.Core");
                 var assemblyCommon = Assembly.Load("Admin.Core.Common");
                 builder.RegisterAssemblyTypes(assemblyCore, assemblyCommon)
                     .Where(t => t.GetCustomAttribute<SingleInstanceAttribute>() != null)
                     .SingleInstance();
-                //�нӿ�ע�뵥��
+                //有接口注入单例
                 builder.RegisterAssemblyTypes(assemblyCore, assemblyCommon)
                     .Where(t => t.GetCustomAttribute<SingleInstanceAttribute>() != null)
                     .AsImplementedInterfaces()
@@ -264,18 +264,18 @@ namespace Web.core
                 {
                     c.SwaggerEndpoint($"/swagger/{version}/swagger.json", $"Web.Core {version}");
                 });
-                c.RoutePrefix = ""; //ֱ�Ӹ�Ŀ¼����
-                c.DocExpansion(DocExpansion.None); //�۵�Api
-                //c.DefaultModelsExpandDepth(-1);//����ʾModels
+                c.RoutePrefix = ""; //直接根目录访问
+                c.DocExpansion(DocExpansion.None); //折叠Api
+                //c.DefaultModelsExpandDepth(-1);//不显示Models
             });
 
             #endregion
 
 
-            //��֤
+            //认证
             app.UseAuthentication();
 
-            //��Ȩ
+            //授权
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
