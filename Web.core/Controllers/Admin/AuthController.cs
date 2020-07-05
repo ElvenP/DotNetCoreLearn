@@ -52,12 +52,9 @@ namespace Web.core.Controllers.Admin
             var res = await _authService.LoginAsync(input);
             sw.Stop();
 
-          
 
-            ResponseOutput<AuthLoginOutput> output = null;
             if (!res.Success) return !res.Success ? res : GetToken(output: null);
-            output = (res as ResponseOutput<AuthLoginOutput>);
-            var user = output?.Data;
+            var output = (res as ResponseOutput<AuthLoginOutput>);
 
             return !res.Success ? res : GetToken(output);
         }

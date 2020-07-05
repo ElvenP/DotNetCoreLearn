@@ -1,10 +1,8 @@
 ﻿using System.Threading.Tasks;
-using Admin.Core.Common.Auth;
 using Admin.Core.Common.Output;
 using Admin.Core.Service.Admin.User;
 using Admin.Core.Service.Admin.User.Output;
 using Microsoft.AspNetCore.Mvc;
-using Web.core.Attributes;
 
 namespace Web.core.Controllers.Admin
 {
@@ -13,11 +11,10 @@ namespace Web.core.Controllers.Admin
     {
 
         private readonly IUserService _userServices;
-       
-        public UserController(IUserService userServices, IUser user)
+
+        public UserController(IUserService userServices)
         {
             _userServices = userServices;
-          
         }
 
         /// <summary>

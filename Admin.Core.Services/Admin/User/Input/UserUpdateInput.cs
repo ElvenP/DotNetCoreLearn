@@ -5,7 +5,7 @@ namespace Admin.Core.Service.Admin.User.Input
     /// <summary>
     /// 修改
     /// </summary>
-    public partial class UserUpdateInput
+    public class UserUpdateInput
     {
         /// <summary>
         /// 主键Id

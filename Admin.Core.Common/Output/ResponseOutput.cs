@@ -61,7 +61,7 @@ namespace Admin.Core.Common.Output
     /// <summary>
     /// 响应数据静态输出
     /// </summary>
-    public static partial class ResponseOutput
+    public static class ResponseOutput
     {
         /// <summary>
         /// 成功

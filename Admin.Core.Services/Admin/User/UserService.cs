@@ -9,7 +9,6 @@ using Admin.Core.Model.Admin;
 using Admin.Core.Repository.Admin;
 using Admin.Core.Service.Admin.User.Output;
 using AutoMapper;
-using Castle.DynamicProxy.Generators;
 using CacheKey = Admin.Core.Common.Cache.CacheKey;
 
 namespace Admin.Core.Service.Admin.User
@@ -20,14 +19,14 @@ namespace Admin.Core.Service.Admin.User
         private readonly IMapper _mapper;
         private readonly ICache _cache;
         private readonly IUser _user;
-        private readonly IRolePermissionRepository RolePermissionRepository;
+        private readonly IRolePermissionRepository _rolePermissionRepository;
 
 
         public UserService(IUserRepository userRepository, IMapper mapper, ICache cache, IRolePermissionRepository rolePermissionRepository, IUser user)
         {
             _mapper = mapper;
             _cache = cache;
-            RolePermissionRepository = rolePermissionRepository;
+            _rolePermissionRepository = rolePermissionRepository;
             _user = user;
             _userRepository = userRepository;
            
@@ -55,7 +54,7 @@ namespace Admin.Core.Service.Admin.User
             }
             else
             {
-                var userPermissoins = await RolePermissionRepository.Select
+                var userPermissoins = await _rolePermissionRepository.Select
                     .InnerJoin<UserRoleEntity>((a, b) => a.RoleId == b.RoleId && b.UserId == _user.Id && a.Permission.Type == PermissionType.Api)
                     .Include(a => a.Permission.Api)
                     .Distinct()
