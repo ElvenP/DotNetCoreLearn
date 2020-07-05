@@ -17,6 +17,7 @@ namespace Admin.Core.Common.Cache
     public class MemoryCache : ICache
     {
         private readonly IMemoryCache _memoryCache;
+
         public MemoryCache(IMemoryCache memoryCache)
         {
             _memoryCache = memoryCache;
@@ -24,19 +25,14 @@ namespace Admin.Core.Common.Cache
 
         public long Del(params string[] key)
         {
-            foreach (var k in key)
-            {
-                _memoryCache.Remove(k);
-            }
+            foreach (var k in key) _memoryCache.Remove(k);
+
             return key.Length;
         }
 
         public Task<long> DelAsync(params string[] key)
         {
-            foreach (var k in key)
-            {
-                _memoryCache.Remove(k);
-            }
+            foreach (var k in key) _memoryCache.Remove(k);
 
             return Task.FromResult(key.Length.ToLong());
         }
@@ -51,10 +47,7 @@ namespace Admin.Core.Common.Cache
             var keys = GetAllKeys().Where(k => Regex.IsMatch(k, pattern));
 
             var enumerable = keys as string[] ?? keys.ToArray();
-            if (enumerable.Any())
-            {
-                return await DelAsync(enumerable.ToArray());
-            }
+            if (enumerable.Any()) return await DelAsync(enumerable.ToArray());
 
             return default;
         }
@@ -113,17 +106,14 @@ namespace Admin.Core.Common.Cache
             return Task.FromResult(true);
         }
 
-        private List<string> GetAllKeys()
+        private IEnumerable<string> GetAllKeys()
         {
             const BindingFlags flags = BindingFlags.Instance | BindingFlags.NonPublic;
             var entries = _memoryCache.GetType().GetField("_entries", flags)?.GetValue(_memoryCache);
             var cacheItems = entries as IDictionary;
             var keys = new List<string>();
             if (cacheItems == null) return keys;
-            foreach (DictionaryEntry cacheItem in cacheItems)
-            {
-                keys.Add(cacheItem.Key.ToString());
-            }
+            keys.AddRange(from DictionaryEntry cacheItem in cacheItems select cacheItem.Key.ToString());
             return keys;
         }
     }

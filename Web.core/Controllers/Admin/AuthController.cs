@@ -11,9 +11,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Web.core.Controllers.Admin
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class AuthController : ControllerBase
+   
+    public class AuthController : AreaController
     {
         private readonly IUserToken _userToken;
 

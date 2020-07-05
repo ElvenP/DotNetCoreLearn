@@ -8,10 +8,8 @@ using Web.core.Attributes;
 
 namespace Web.core.Controllers.Admin
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    [Permission]
-    public class UserController : ControllerBase
+
+    public class UserController : AreaController
     {
 
         private readonly IUserService _userServices;
